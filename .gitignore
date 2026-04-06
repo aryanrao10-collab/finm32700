@@ -1,0 +1,9 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore compiled executables and profiling data
+main
+linalg_bench
+*.out
+*.o
+*.dSYM/
