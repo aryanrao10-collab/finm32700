@@ -5,6 +5,7 @@
 
 // Memory Management
 double* allocate_aligned(size_t size, size_t alignment = 64);
+
 void free_aligned(double* ptr);
 
 // Part 1: Baseline Implementations
