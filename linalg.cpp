@@ -22,6 +22,7 @@ inline bool check_dimensions(const double* a, const double* b, double* c) {
 
 void multiply_mv_row_major(const double* matrix, int rows, int cols, const double* vector, double* result) {
     if (!check_dimensions(matrix, vector, result)) return;
+    
     for (int i = 0; i < rows; ++i) {
         double sum = 0.0;
         for (int j = 0; j < cols; ++j) {

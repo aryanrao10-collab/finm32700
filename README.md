@@ -12,6 +12,7 @@ To run the benchmarks:
 ./linalg_bench
 
 Discussion Questions
+
 1. Explain the key differences between pointers and references in C++. When would you choose to use a pointer over a reference, and vice versa?
 
 A pointer is a variable that stores a memory address and can be reassigned to point elsewhere, or be set to nullptr. A reference is a direct alias to an existing variable, must be initialized upon declaration, and cannot be reassigned or be null. In numerical algorithms, I use pointers for dynamically allocated contiguous blocks of memory and when interacting with C-style APIs. I use references for passing complex objects into functions safely without copying, ensuring they exist and are valid.

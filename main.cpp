@@ -29,6 +29,7 @@ int main() {
     std::cout << "Allocating 64-byte aligned memory for " << SIZE << "x" << SIZE << " matrices..." << std::endl;
     
     size_t num_elements = SIZE * SIZE;
+    
     double* matA = allocate_aligned(num_elements);
     double* matB = allocate_aligned(num_elements);
     double* matB_T = allocate_aligned(num_elements);
