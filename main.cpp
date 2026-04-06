@@ -76,6 +76,14 @@ int main() {
 
         for(int i=0; i<ITERATIONS; ++i) {
             auto start = std::chrono::high_resolution_clock::now();
+            multiply_mv_row_major(matA, SIZE, SIZE, vec, res_test_mv);
+            times_mv_row[i] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
+
+            start = std::chrono::high_resolution_clock::now();
+            multiply_mv_col_major(matA_col, SIZE, SIZE, vec, res_test_mv);
+            times_mv_col[i] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
+
+            start = std::chrono::high_resolution_clock::now();
             multiply_mm_naive(matA, SIZE, SIZE, matB, SIZE, SIZE, res_baseline_mm);
             times_mm_naive[i] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
 
@@ -88,11 +96,13 @@ int main() {
             times_mm_tiled[i] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
         }
 
+        print_stats("MV Row-Major", times_mv_row);
+        print_stats("MV Col-Major", times_mv_col);
         print_stats("MM Naive", times_mm_naive);
         print_stats("MM Transposed B", times_mm_trans);
         print_stats("MM Tiled (Block=64)", times_mm_tiled);
 
-        free_aligned(matA); free_aligned(matB); free_aligned(matB_T); free_aligned(vec);
+        free_aligned(matA); free_aligned(matA_col); free_aligned(matB); free_aligned(matB_T); free_aligned(vec);
         free_aligned(res_baseline_mv); free_aligned(res_test_mv); free_aligned(res_baseline_mm); free_aligned(res_test_mm);
     }
 
